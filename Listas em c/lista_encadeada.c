@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-
 // Define a estrutura de uma lista encadeada
 typedef struct {
     int info;                        // Informação armazenada no nó
