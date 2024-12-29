@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-
 // Define a estrutura de uma lista encadeada
 typedef struct {
     int info;                        // Informação armazenada no nó
@@ -13,6 +10,36 @@ typedef struct {
 // Inicializa a lista encadeada, retornando NULL (lista vazia)
 lista_encadeada* inicializar() {
     return NULL;
+}
+
+// Cria um novo nó
+lista_encadeada* criar_novo(int v) {
+    lista_encadeada* n = (lista_encadeada*) malloc(sizeof(lista_encadeada));
+    n->info = v;
+    return n;
+}
+
+// Insere a lista mantendo uma ordenação
+lista_encadeada* inserir_ordenado(lista_encadeada* l, int v) {
+    lista_encadeada* novo = criar_novo(v);  // Cria um novo nó
+    lista_encadeada* ant = NULL;            // Variável que se refere ao nó anterior
+    lista_encadeada* prox = l;              // Variável que se refere ao próximo nó
+
+    // Looping até encontrar a posição correta onde o nó deve ser inserido
+    while (prox != NULL && prox->info < v) {
+        ant = prox;             // Atualiza o ponteiro para o nó anterior
+        prox = prox->prox;      // Atualiza o ponteiro para o próximo nó
+    }
+
+    // Verifica se o nó deve ser inserido na primeira posição
+    if (ant == NULL) {
+        novo->prox = prox;
+        l = novo;
+    } else { // Caso o nó for inserido numa posição sem ser o início
+        novo->prox = ant->prox;
+        ant->prox = novo;
+    }
+    return l;
 }
 
 // Insere um novo elemento no início da lista
@@ -31,6 +58,7 @@ void imprimir(lista_encadeada* l) {
         printf("%d ", p->info); // Imprime o valor do nó atual
         p = p->prox;            // Avança para o próximo nó
     }
+    printf("\n");
 }
 
 // Busca um elemento na lista pelo valor informado
@@ -81,10 +109,14 @@ void libera(lista_encadeada* l) {
 
 // Função principal para testar as funções da lista encadeada
 int main(void) {
-    lista_encadeada* l;      // Declara um ponteiro para a lista
-    l = inicializar();       // Inicializa a lista como vazia
-    l = inserir(l, 2);       // Insere o valor 2 na lista
-    imprimir(l);             // Imprime os valores da lista
-    libera(l);               // Libera a memória alocada pela lista
-    return 0;                // Encerra o programa
+    lista_encadeada* l;               // Declara um ponteiro para a lista
+    l = inicializar();                // Inicializa a lista como vazia
+    l = inserir_ordenado(l, 2);       // Insere o valor 2 na lista
+    l = inserir_ordenado(l, 5);       // Insere o valor 5 na lista
+    l = inserir_ordenado(l,4);
+    imprimir(l);                      // Imprime os valores da lista
+    l = retirar(l, 2);                // Retira o valor 2 da lista
+    imprimir(l);                      // Imprime os valores da lista
+    libera(l);                        // Libera a memória alocada pela lista
+    return 0;                         // Encerra o programa
 }
