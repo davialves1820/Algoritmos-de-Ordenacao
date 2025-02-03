@@ -109,6 +109,7 @@ void libera(lista_encadeada* l) {
 
 // Função principal para testar as funções da lista encadeada
 int main(void) {
+    
     lista_encadeada* l;               // Declara um ponteiro para a lista
     l = inicializar();                // Inicializa a lista como vazia
     l = inserir_ordenado(l, 2);       // Insere o valor 2 na lista
@@ -118,5 +119,6 @@ int main(void) {
     l = retirar(l, 2);                // Retira o valor 2 da lista
     imprimir(l);                      // Imprime os valores da lista
     libera(l);                        // Libera a memória alocada pela lista
-    return 0;                         // Encerra o programa
+
+    return 0;                         
 }
