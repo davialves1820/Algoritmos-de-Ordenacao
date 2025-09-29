@@ -1,4 +1,4 @@
-# Ordenação de Vetores com Diversos Algoritmos
+# Algoritmos de Ordenação
 
 ## 📄 Descrição
 Implementação de diversos algoritmos de ordenação em linguagem C:  
