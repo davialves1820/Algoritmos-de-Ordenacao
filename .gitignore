@@ -1,0 +1,5 @@
+.vscode/
+bin/
+instancias_output/
+instancias-num/
+obj/
