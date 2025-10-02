@@ -2,7 +2,7 @@
 
 ## 📄 Descrição
 Implementação de diversos algoritmos de ordenação em linguagem C:  
-**Bubble Sort**, **Selection Sort**, **Insertion Sort**, **Quick Sort**, **Merge Sort** e **Heap Sort**.  
+**Bubble Sort**, **Selection Sort**, **Insertion Sort**, **Quick Sort**, **Merge Sort**, **Heap Sort**,**Counting Sort**, **Bucket Sort** e **Radix Sort**.  
 
 O programa compara o desempenho desses algoritmos medindo o tempo de execução e armazena os números ordenados em arquivos de saída.
 
