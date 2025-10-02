@@ -95,3 +95,38 @@ O programa exibirá no terminal o tempo de execução de cada algoritmo em segun
 - **Vantagens:** Desempenho consistente, sem pior caso degenerado.
 - **Desvantagens:** Mais lento que Quick Sort na prática para muitos casos.
 
+---
+
+### Counting Sort
+
+- **Descrição:** Conta a frequência de cada valor e usa essa contagem para reconstruir o vetor em ordem.
+
+- **Complexidade de tempo:** O(n + k), onde k é o valor máximo no vetor.
+
+- **Vantagens:** Extremamente eficiente para intervalos pequenos de valores inteiros.
+
+- **Desvantagens:** Requer memória proporcional ao valor máximo, não é comparativo.
+
+---
+
+### Bucket Sort
+
+- **Descrição:** Distribui os elementos em "baldes" (intervalos), ordena individualmente cada balde (geralmente com Insertion Sort) e os combina.
+
+- **Complexidade de tempo:** O(n + k), no caso médio, dependendo da distribuição dos dados.
+
+- **Vantagens:** Muito eficiente para dados uniformemente distribuídos.
+
+- **Desvantagens:** Desempenho pode degradar se os dados não forem bem distribuídos.
+
+---
+
+### Radix Sort
+
+- **Descrição:** Ordena números processando dígito por dígito, geralmente da menor posição para a maior, utilizando Counting Sort como sub-rotina estável.
+
+- **Complexidade de tempo:** O(d × (n + k)), onde d é o número de dígitos.
+
+- **Vantagens:** Muito eficiente para números inteiros de tamanho fixo.
+
+- **Desvantagens:** Requer que o algoritmo auxiliar (como Counting Sort) seja estável.
