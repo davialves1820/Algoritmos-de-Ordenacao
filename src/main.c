@@ -8,7 +8,7 @@
 
 int main(void) {
     printf("Carregando dados do arquivo:\n");
-    const char *input_file = "instancias-num/num.1000.1.in";
+    const char *input_file = "instancias-num/d.txt";
 
     int vetor_original[TAM];
     int vetor_bubble[TAM], vetor_selection[TAM], vetor_insertion[TAM];

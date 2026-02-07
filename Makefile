@@ -20,8 +20,8 @@ all: setup $(TARGET)
 
 # Cria os diretórios necessários
 setup:
-	@if not exist "$(BIN_DIR)" mkdir "$(BIN_DIR)"
-	@if not exist "$(OBJ_DIR)" mkdir "$(OBJ_DIR)"
+	@mkdir -p "$(BIN_DIR)"
+	@mkdir -p "$(OBJ_DIR)"
 
 # Gera o executável
 $(TARGET): $(OBJS)
@@ -33,7 +33,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Limpeza
 clean:
-	@if exist "$(BIN_DIR)" rmdir /s /q "$(BIN_DIR)"
-	@if exist "$(OBJ_DIR)" rmdir /s /q "$(OBJ_DIR)"
+	@rm -rf "$(BIN_DIR)"
+	@rm -rf "$(OBJ_DIR)"
 
 .PHONY: all setup clean
