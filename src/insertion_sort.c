@@ -8,7 +8,7 @@ void insertion_sort(int v[], int tam) {
         int j = i - 1; // j começa uma posição antes de i
 
         // Enquanto a posição antes do pivô conter um valor superior ou chegar ao fim do vetor
-        while (v[j] > pivo && j >= 0) { 
+        while (j >= 0 && v[j] > pivo) { 
             
             v[j + 1] = v[j]; // Faz um reordenamento da esquerda para direita
             j--; // Decrementa j
