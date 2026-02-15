@@ -14,9 +14,11 @@ Os números a serem ordenados são lidos de arquivos de entrada, e os resultados
 
 - **src**: Contém os arquivos de implementação;
 - **include**: Contém os arquivos de cabeçalho;
-- **instancias-num**: Contém os arquivos de entrada com os números a serem ordenados;
-- **instancias_output**: Contém os arquivos de saida com os números já ordenados;
--  **Makefile:** Arquivo de configuração para a compilação.
+- **instancias**: Contém os arquivos de entrada com os números a serem ordenados;
+- **resultados.csv**: Contém o arquivo com os resultados de análise de cada algoritmo;
+- **grafico_TIPODOVETOR**: Contém o gráfico comparando os algoritmos para cada tipo de entrada;
+- **gerar_grafico.py**: Arquivo que gera os gráficos a partir do arquivo csv;
+- **Makefile:** Arquivo de configuração para a compilação.
 
 ---
 
@@ -43,7 +45,13 @@ O programa irá:
 ---
 
 ## 🖥️ Saída do Programa
-O programa exibirá no terminal o tempo de execução de cada algoritmo em segundos. Esses valores variam, mas a média é por volta desse intervalo com o insertion sort sendo mais rápido.
+Os resultados estarão no arquivo csv.
+
+### Gerar os gráficos de comparação dos algoritmos
+
+```bash
+python gerar_grafico.py
+```
 
 ---
 

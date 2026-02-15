@@ -1,59 +1,78 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "time_functions.h"
+#include "instancias.h"
 
-#define TAM 10001
+#define TAM 100001
+#define REPETICOES 1
 
+void salvar_resultado_csv(FILE *csv, const char *tipo,
+                          int n, double sel, double ins,
+                          double quick, double merge) {
 
-int main(void) {
-    printf("Carregando dados do arquivo:\n");
-    const char *input_file = "instancias-num/d.txt";
+    fprintf(csv, "%s,%d,%.9lf,%.9lf,%.9lf,%.9lf\n",
+            tipo, n, sel, ins, quick, merge);
+}
+
+void testar_instancia(FILE *csv, const char *tipo, int n) {
+
+    char nomeArquivo[150];
+    sprintf(nomeArquivo, "instancias/%s_%d.txt", tipo, n);
 
     int vetor_original[TAM];
-    int vetor_bubble[TAM], vetor_selection[TAM], vetor_insertion[TAM];
-    int vetor_quick[TAM], vetor_merge[TAM], vetor_heap[TAM];
-    int vetor_counting[TAM], vetor_bucket[TAM], vetor_radix[TAM];
+    int v_sel[TAM], v_ins[TAM], v_quick[TAM], v_merge[TAM];
 
-    int n = carregar_vetor(input_file, vetor_original);
+    int tamanho = carregar_vetor(nomeArquivo, vetor_original);
 
-    for (int i = 0; i < n; i++) {
-        vetor_bubble[i] = vetor_selection[i] = vetor_insertion[i] =
-        vetor_quick[i] = vetor_merge[i] = vetor_heap[i] =
-        vetor_counting[i] = vetor_bucket[i] = vetor_original[i] =
-        vetor_radix[i] = vetor_original[i];
+    for (int i = 0; i < tamanho; i++) {
+        v_sel[i] = vetor_original[i];
+        v_ins[i] = vetor_original[i];
+        v_quick[i] = vetor_original[i];
+        v_merge[i] = vetor_original[i];
     }
 
-    double tempo;
+    double tempo_sel = medir_tempo(selection_sort, v_sel, tamanho, REPETICOES);
+    double tempo_ins = medir_tempo(insertion_sort, v_ins, tamanho, REPETICOES);
+    double tempo_quick = medir_tempo_quick(v_quick, tamanho, REPETICOES);
+    double tempo_merge = medir_tempo_merge(v_merge, tamanho, REPETICOES);
 
-    tempo = medir_tempo(bubble_sort, vetor_bubble, n, 10);
-    printf("Bubble Sort:   %.9lf s\n", tempo);
+    printf("%s %d concluido.\n", tipo, n);
 
-    tempo = medir_tempo(selection_sort, vetor_selection, n, 10);
-    printf("Selection Sort: %.9lf s\n", tempo);
+    salvar_resultado_csv(csv, tipo, n,
+                         tempo_sel, tempo_ins,
+                         tempo_quick, tempo_merge);
+}
 
-    tempo = medir_tempo(insertion_sort, vetor_insertion, n, 10);
-    printf("Insertion Sort: %.9lf s\n", tempo);
+int main() {
 
-    tempo = medir_tempo_quick(vetor_quick, n, 10);
-    printf("Quick Sort:     %.9lf s\n", tempo);
+    srand(time(NULL));
 
-    tempo = medir_tempo_merge(vetor_merge, n, 10);
-    printf("Merge Sort:     %.9lf s\n", tempo);
+    //gerar_instancias(); // Só precisa ser descomentado na primeira execução para gerar as instâncias
 
-    tempo = medir_tempo(heap_sort, vetor_heap, n, 10);
-    printf("Heap Sort:      %.9lf s\n", tempo);
+    FILE *csv = fopen("resultados.csv", "w");
+    if (!csv) {
+        printf("Erro ao criar CSV!\n");
+        return 1;
+    }
 
-    //tempo = medir_tempo_counting(vetor_counting, n, 10);
-    //printf("Counting Sort:  %.9lf s\n", tempo);
+    fprintf(csv, "Tipo,Tamanho,Selection,Insertion,Quick,Merge\n");
 
-    tempo = medir_tempo_bucket(vetor_bucket, n, 10);
-    printf("Bucket Sort:    %.9lf s\n", tempo);
+    int tamanhos[] = {1000, 5000, 10000, 50000, 100000};
+    int qtd = sizeof(tamanhos) / sizeof(tamanhos[0]);
+    const char *tipos[] = {"aleatorio", "repetido", "ordenado", "inverso"};
 
-    //tempo = medir_tempo_radix(vetor_radix, n, 10);
-    // printf("Radix Sort:     %.9lf s\n", tempo);
+    for (int t = 0; t < 4; t++) {
+        for (int i = 0; i < qtd; i++) {
+            testar_instancia(csv, tipos[t], tamanhos[i]);
+        }
+    }
 
-    printf("\nOrdenacao concluida!\n");
+    fclose(csv);
+
+    printf("\nTodos os testes finalizados!\n");
+    printf("Resultados salvos em resultados.csv\n");
 
     return 0;
 }
