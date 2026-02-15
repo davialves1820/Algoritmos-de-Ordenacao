@@ -23,7 +23,7 @@ double medir_tempo(void (*sort_func)(int*, int), int vetor[], int n, int rep) {
     return ((double)(fim - inicio) / CLOCKS_PER_SEC) / rep;
 }
 
-// Medição para QuickSort (recebe low e high)
+// Medição para QuickSort
 double medir_tempo_quick(int vetor[], int n, int rep) {
     clock_t inicio = clock();
 
@@ -40,7 +40,7 @@ double medir_tempo_quick(int vetor[], int n, int rep) {
     return ((double)(fim - inicio) / CLOCKS_PER_SEC) / rep;
 }
 
-// Medição para MergeSort (recebe low e high)
+// Medição para MergeSort
 double medir_tempo_merge(int vetor[], int n, int rep) {
     clock_t inicio = clock();
 
