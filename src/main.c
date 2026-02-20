@@ -59,7 +59,7 @@ int main() {
 
     fprintf(csv, "Tipo,Tamanho,Selection,Insertion,Quick,Merge\n");
 
-    int tamanhos[] = {1000, 5000, 10000, 50000, 100000};
+    int tamanhos[] = {1000, 0000,5000, 1 50000, 100000};
     int qtd = sizeof(tamanhos) / sizeof(tamanhos[0]);
     const char *tipos[] = {"aleatorio", "repetido", "ordenado", "inverso"};
 

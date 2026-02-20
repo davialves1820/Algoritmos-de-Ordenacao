@@ -138,3 +138,119 @@ python gerar_grafico.py
 - **Vantagens:** Muito eficiente para números inteiros de tamanho fixo.
 
 - **Desvantagens:** Requer que o algoritmo auxiliar (como Counting Sort) seja estável.
+
+## Algoritmos Avaliados
+
+- Selection Sort
+- Insertion Sort
+- Quick Sort
+- Merge Sort
+
+---
+
+# 🔵 1. Instâncias Aleatórias
+
+## Comportamento Observado
+
+- **Selection Sort:** Crescimento quadrático evidente.
+- **Insertion Sort:** Também apresenta crescimento Θ(n²).
+- **Quick Sort:** Crescimento aproximadamente Θ(n log n).
+- **Merge Sort:** Crescimento estável Θ(n log n).
+
+## Análise Teórica
+
+| Algoritmo       | Melhor Caso | Caso Médio | Pior Caso |
+|---------------|------------|------------|------------|
+| Selection     | Θ(n²)     | Θ(n²)     | Θ(n²)     |
+| Insertion     | Θ(n)      | Θ(n²)     | Θ(n²)     |
+| Quick         | Θ(n log n)| Θ(n log n)| Θ(n²)     |
+| Merge         | Θ(n log n)| Θ(n log n)| Θ(n log n)|
+
+## Conclusão
+
+Para dados aleatórios, algoritmos Θ(n log n) escalam muito melhor.  
+A diferença entre crescimento quadrático e n log n torna-se extremamente significativa para grandes entradas.
+
+---
+
+# 🟢 2. Instâncias com Alta Repetição de Valores
+
+## Comportamento Observado
+
+- **Selection Sort:** Sem alterações significativas.
+- **Insertion Sort:** Pequena melhora dependendo da organização.
+- **Quick Sort:** Pode apresentar melhor balanceamento nas partições.
+- **Merge Sort:** Mantém comportamento estável.
+
+## Análise
+
+A repetição de valores pode favorecer o Quick Sort, pois o particionamento tende a gerar divisões mais equilibradas.  
+O Merge Sort permanece constante, pois sua complexidade não depende da distribuição dos dados.
+
+## Conclusão
+
+Algoritmos baseados em divisão e conquista mantêm estabilidade, enquanto algoritmos quadráticos continuam pouco escaláveis.
+
+---
+
+# 🟡 3. Instâncias Já Ordenadas
+
+## Comportamento Observado
+
+- **Selection Sort:** Continua Θ(n²).
+- **Insertion Sort:** Aproxima-se de Θ(n) (melhor caso).
+- **Quick Sort:** Pode piorar dependendo da escolha do pivô.
+- **Merge Sort:** Mantém Θ(n log n).
+
+## Análise
+
+O Insertion Sort é altamente eficiente quando os dados já estão ordenados, pois realiza poucas trocas.  
+O Selection Sort não se beneficia da ordenação prévia, pois sempre realiza o mesmo número de comparações.
+
+## Conclusão
+
+Para dados quase ordenados, Insertion Sort pode ser uma escolha eficiente.  
+Merge Sort mantém desempenho previsível.
+
+---
+
+# 🔴 4. Instâncias Inversamente Ordenadas
+
+## Comportamento Observado
+
+- **Selection Sort:** Mantém Θ(n²).
+- **Insertion Sort:** Apresenta pior caso Θ(n²).
+- **Quick Sort:** Pode se aproximar de Θ(n²) se o pivô for mal escolhido.
+- **Merge Sort:** Mantém Θ(n log n).
+
+## Análise
+
+O Insertion Sort sofre forte degradação neste cenário, pois cada elemento precisa ser deslocado diversas posições.  
+Merge Sort mantém estabilidade, independentemente da ordem inicial.
+
+## Conclusão
+
+Algoritmos quadráticos são altamente sensíveis à organização inicial dos dados.  
+Merge Sort demonstrou maior robustez geral.
+
+---
+
+# 🏁 Conclusão Geral
+
+- Algoritmos Θ(n²) são adequados apenas para entradas pequenas.
+- Algoritmos Θ(n log n) apresentam melhor escalabilidade.
+- Merge Sort é o mais estável em todos os cenários.
+- Quick Sort apresenta excelente desempenho médio, mas depende da escolha do pivô.
+- A análise experimental confirmou a teoria da complexidade assintótica.
+
+---
+
+# 📌 Considerações Finais
+
+Os experimentos demonstraram na prática o impacto da complexidade assintótica no desempenho real dos algoritmos.  
+A escolha do algoritmo adequado deve considerar:
+
+- Tamanho da entrada
+- Distribuição dos dados
+- Sensibilidade a pior caso
+- Requisitos de estabilidade
